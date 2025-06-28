@@ -10,7 +10,7 @@ public static class ResultExtensions
 {
 
     private static Error FromException(AppException ex) =>
-        new() { Code = ex.Code.ToString(), Message = ex.UserMessage ?? ex.Message, HttpStatus = ex.HttpStatus };
+        new() { Code = ex.Code, Message = ex.UserMessage ?? ex.Message, HttpStatus = ex.HttpStatus };
 
     private static Result<T> Failure<T>(AppException ex) =>
         new() { IsSuccess = false, Errors = { FromException(ex) }, Message = ex.UserMessage ?? ex.Message };
